@@ -35,51 +35,52 @@ divSelection
 */
 
 const ds1 = [
-                  [ 34,    78 ],
-                  [ 109,   280 ],
-                  [ 310,   120 ],
-                  [ 79,    411 ],
-                  [ 420,   220 ],
-                  [ 233,   145 ],
-                  [ 333,   96 ],
-                  [ 222,   333 ],
-                  [ 78,    320 ],
-                  [ 21,    123 ]
+                  [ 34,    78 , "#FF0000"],
+                  [ 109,   280 , "#FF0000"],
+                  [ 310,   120 , "#FF0000"],
+                  [ 79,    411 , "#FF0000"],
+                  [ 420,   220 , "#FF0000"],
+                  [ 233,   145 , "#FF0000"],
+                  [ 333,   96 , "#FF0000"],
+                  [ 222,   333 , "#FF0000"],
+                  [ 78,    320 , "#FF0000"],
+                  [ 21,    123 , "#FF0000"]
                 ];
 
 const ds2 = [
-                  [ 40,    56 ],
-                  [ 115,   340 ],
-                  [ 280,   151 ],
-                  [ 32,    342 ],
-                  [ 367,   212 ],
-                  [ 156,   234 ],
-                  [ 421,   123 ],
-                  [ 390,   344 ],
-                  [ 50,    77 ],
-                  [ 198,   369 ]
+                  [ 40,    56 , "#0000FF"],
+                  [ 115,   340 , "#0000FF"],
+                  [ 280,   151 , "#0000FF"],
+                  [ 32,    342 , "#0000FF"],
+                  [ 367,   212 , "#0000FF"],
+                  [ 156,   234 , "#0000FF"],
+                  [ 421,   123 , "#0000FF"],
+                  [ 390,   344 , "#0000FF"],
+                  [ 50,    77 , "#0000FF"],
+                  [ 198,   369 , "#0000FF"]
                 ];
-    
-    
+
+
 const w = 500;
 const h = 500;
 
 data = ds1.concat(ds2);
-//console.log(data); 
+//console.log(data);
 
-const svg = d3.select("viz")
+const svg = d3.select("body")
               .append("svg")
               .attr("width", w)
               .attr("height", h);
-    
+
 svg.selectAll("circle")
    .data(data)
    .enter()
    .append("circle")
    .attr("cx", (d, i) => d[0])
    .attr("cy", (d, i) => h - d[1])
-   .attr("r", 3);
-    
+   .attr("r", 3)
+   .style("fill", (d) => d[2]);
+
 svg.selectAll("text")
    .data(data)
    .enter()
@@ -87,7 +88,5 @@ svg.selectAll("text")
    // Add your code below this line
    .attr("x", (d) => d[0]+5)
    .attr("y", (d) => h - d[1])
-   .text((d) => d[0]+', '+d[1]);
-
-       
-       
+   .text((d) => d[0]+', '+d[1])
+   .style("fill", (d) => d[2]);
