@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mazhilis Diagram</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+  <script type="text/javascript" src="app.js" defer>  </script>
+  <style>
+    .Member {
+      fill: #79ed8c;
+      background-color: #79ed8c;
+    }
+    .hl {
+      fill: lightgreen;
+    }
+
+    path {
+      fill: none;
+      stroke: #999;
+    }
+    /* What you need: */
+table td {
+    width: 180px;
+
+    display: inline-block;
+
+}
+    .d3-tip {
+    line-height: 1;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+    }
+    #Legend {
+      list-style: none;
+      margin: 3rem 3rem;
+      padding: 1rem;
+      width: 100px;
+      position:fixed;
+      top: 50px;
+      /*
+      position:fixed;
+      top:0%;*/
+    }
+    #Legend li {
+      list-style: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+      margin: 1rem 0;
+      padding: 0.5rem;
+      width: 150px;
+      position: relative;
+      /*
+       float: left;
+       clear: left;*/
+    }
+  .Otan{
+    background-color: pink;
+    fill: pink;
+  }
+  .Assamb{
+    background-color: #faf68e;
+    fill: #faf68e;
+  }
+  .Akzhol{
+    background-color: #7f98eb;
+    fill: #7f98eb;
+  }
+  .KNPK{
+    background-color: #ed5c5c;
+    fill: #ed5c5c;
+  }
+  .DPK{
+    background-color: #88f2c9;
+    fill: #88f2c9;
+  }
+  .Assar{
+    background-color: #f2ab88;
+    fill: #f2ab88;
+  }
+  .AIST{
+    background-color: #f2ab88;
+    fill: #f2ab88;
+  }
+
+
+  </style>
+</head>
+<body>
+  <h3>Team members</h3>
+  <ul>
+    <li>Sultan Apsalyamov</li>
+    <li>Aknur Shailyatova</li>
+    <li>Batyrkhan Zhumabekov</li>
+  </ul>
+  <table>
+    <tr>
+      <td style="width:200px;">
+        <ul id='Legend'>
+        <li class="Otan">Нур Отан</li>
+        <li class="Assamb">Ассамблея народа Казахстана</li>
+        <li class="Akzhol">Ак жол</li>
+        <li class="KNPK">Коммунистическая партия Казахстана</li>
+        <li class="Assar">Асар</li>
+        <li class="DPK">Демократическая партия Казахстана</li>
+        <li class="Member">Независимые депутаты</li>
+      </ul>
+    </td>
+    <td>
+      <svg></svg>
+    </td>
+
+    </tr>
+  </table>
+</body>
+</html>
