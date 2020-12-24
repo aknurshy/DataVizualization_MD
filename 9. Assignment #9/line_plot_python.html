@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>D3 in Python</title>
+<script src="https://d3js.org/d3.v4.js"></script>
+<style>
+ .bar {
+   fill: #b9a0f2;
+ }
+ .label {
+   fill: black;
+   font: 10px Georgia, serif;
+ }
+ .axis path,
+ .axis line{
+     fill: none;
+     shape-rendering:crispEdges;
+ }
+ .title{
+   fill: black;
+   font: 20px Georgia, serif;
+ }
+</style>
+</head>
+<body>
+  <div id="plotline-id"></div>
+  <script>
+  var margin = {top:20,right:20,bottom:30,left:50};
+  var width = 900 - margin.left - margin.right;
+  var height = 600 - margin.top - margin.bottom;
+
+  var xScale = d3.scaleTime().range([ 0, width ]);
+  var yScale = d3.scaleLinear().range([height, 0]);
+
+  var svg = d3.select("#plotline-id").append("svg")
+  .attr("width", width + margin.left+margin.left)
+  .attr("height", height + margin.top+margin.bottom)
+  .append("g")
+  .attr("transform","translate("+margin.left+","+margin.top+")");
+
+  var data = d3.json("marriages.json", (data)=>{
+    data.forEach(function(d) {
+        d.Year = d3.timeParse("%Y")(d.Year);
+        d.Number = +d.Number;
+    });
+
+  console.log("Extent",d3.extent(data,function(d) { return d.Year}));
+  console.log(data);
+
+  xScale.domain(d3.extent(data, function(d) { return d.Year; }));
+  yScale.domain([0, d3.max(data, function(d) {return d.Number+10; })]);
+
+  svg.append("text")
+  .attr("x", 300)
+  .attr("y", 5)
+  .attr("class", "title")
+  .text("Marriages in KZ");
+
+  svg.append("g")
+  .attr("transform","translate(0,"+height+")")
+  .call(d3.axisBottom(xScale))
+  .append("text")
+  .attr("class","label")
+  .attr("x", width + 10)
+  .style("text-anchor","end")
+  .text("Year");
+
+  svg.append("g")
+  .call(d3.axisLeft(yScale));
+
+  svg.selectAll("path")
+  .datum(data, (d)=>data)
+  .attr("fill", "none")
+  .attr("stroke", "#eb8dae")
+  .attr("stroke-width", 3)
+  .attr("d", d3.line()
+        .x(function(d){
+          return xScale(d.Year);
+        })
+        .y(function(d){
+          return yScale(d.Number);
+        })
+  );
+
+  console.log(data);
+  })
+  </script>
+</body>
+</html>
